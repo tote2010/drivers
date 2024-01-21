@@ -1,8 +1,8 @@
+const axios = require("axios");
 const { Driver } = require("../db.js");
 //const driverSchema = require("../utils/driversShema.js");
 
 //const fetch = require("node-fetch");
-const axios = require("axios");
 
 
 // const getAllDrivers = async (url) => {
@@ -37,18 +37,34 @@ const axios = require("axios");
 
 
 const getAllDrivers = async() => {
+    console.log("controller");
     const driversDB = await Driver.findAll();
+
+    // Arroja array vacío []
+    //return [...driversDB];
+    //return driversDB;
+
+    // Corregido el modelo Driver.js corre -- 22:00:00_2024-01-17
+    // Se rompe y no sé qué cambié -- 22:30:00_2024-01-17
+    return driversDB;
+
+
+
     // console.log(driversDB.dataValues);
     //return driversDB;
 
     const driversAPI = (await axios.get(`http://localhost:5000/drivers`)).data;
+    console.log(driversAPI);
     //console.log(driversAPI);
     //console.log(driversAPI);
     
     const driversApiFiltered = driversApiFilter(driversAPI);
     //console.log(driversAPI, driversDB);
     //return driversDB;
-    return driversApiFiltered;
+    
+    
+    // Arroja array completo API
+    //return driversAPI;
 };
 
 const driversApiFilter = (arr) => {
@@ -71,10 +87,12 @@ const getDriverById = async(id, source) => {
     // return user;
     
     if (source === "api"){
+        console.log(id, source);
         const driversByIdAPI = (await axios.get(`http://localhost:5000/drivers/${id}`)).data;
         const driversApiFiltered = driversApiFilter(driversByIdAPI);
-        return driversApiFiltered;
+        return driversByIdAPI;
     } else if (source === "bdd") {
+        console.log(id, source);
         const driversByIdDB = await Driver.findByPk(id);
         return driversByIdDB;
     }
@@ -83,15 +101,20 @@ const getDriverById = async(id, source) => {
 
 
 const getDriverByName = async(nombre) => {
-    const driversDBByName = await Driver.findOne({where: {nombre: nombre}});
-    //return driversDBByName;
+    console.log("!-byName");
+    const driversDbByName = await Driver.findOne({where: {nombre: nombre}});
+    return driversDbByName;
     
-    const driversAPI = (await axios.get(`http://localhost:5000/drivers/`)).data;
-    const driversApiFiltered = driversApiFilter(driversAPI);
+    // const driversAPI = (await axios.get(`http://localhost:5000/drivers/`)).data;
+    // const driversApiFiltered = driversApiFilter(driversAPI);
 
-    const driverFiltered = driversApiFiltered.filter((driver)=>driver.forename.surname===nombre);
+    // const driverFiltered = driversApiFiltered.filter((driver)=>driver.forename.surname===nombre);
     
-    return [...driversDBByName, ... driverFiltered];
+    // return [...driversDBByName, ... driverFiltered];
+
+
+
+    
     // const driverDbFiltered = await Driver.findAll({where: {nombre: nombre}});
     // const driverApiFiltered = driversApiFiltered.filter(((Driver) => driver.name.forename === nombre));
     

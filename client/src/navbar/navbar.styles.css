@@ -1,0 +1,24 @@
+.search-box {
+    align-self: flex-end;
+    appearance: none;
+    border: none; 
+    outline: none; /* delineado por debajo de la linea de navegación */
+    padding: 10px;
+    width: 250px;
+    line-height: 30px;
+    margin-right: 90px;
+    margin-bottom: 30px;
+}
+
+input {
+    appearance: none;
+    width: 150px;
+    height: 20px;
+    margin-right: 10px;
+    display: inline-block;
+  }
+
+  button {
+    font-size: 17px;
+    border-radius: 5px; 
+  }

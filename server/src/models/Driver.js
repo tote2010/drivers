@@ -4,7 +4,9 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('Driver', {
+
+  // Acá, anteriormente, el modelo estaba definido con mayúscula inicial "Drivers" es arrojaba un array vacío
+  sequelize.define('driver', {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,

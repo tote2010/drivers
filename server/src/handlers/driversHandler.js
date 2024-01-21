@@ -1,23 +1,41 @@
+const { response } = require("express");
 const { getAllDrivers, getDriverById, getDriverByName, createDriverDB } = require("../controllers/driversController.js");
 
 const getDriversHandler = async (req, res) => {
-
-    const { name } = req.query;
     try {
-        if(name){
-            const driverByName = await getDriverByName(name);
-        } else {
+       
+            console.log("!-All");
             const response = await getAllDrivers();
-            //console.log("res:", res.data)
+            console.log(response);
             res.status(200).json(response);
-        }
-
-        // console.log(res);
-        // res.status(200).send("Entramos");
+        return response;
     } catch (error) {
         res.status(400).json({error: error.msj});
     }
 };
+
+// const getDriversHandler = async (req, res) => {
+
+//     const { nombre } = req.query;
+//     try {
+//         if(nombre){
+//             console.log("!");
+//             // consolelogea pero entra en loop
+//             const driverByName = await getDriverByName(nombre);
+//             return driverByName;
+//         } else {
+//             console.log("?");
+//             const response = await getAllDrivers();
+//             console.log(response);
+//             res.status(200).json(response);
+//         }
+//         return response;
+//         // console.log(res);
+//         // res.status(200).send("Entramos");
+//     } catch (error) {
+//         res.status(400).json({error: error.msj});
+//     }
+// };
     
 const getDriversByIdHandler = async (req, res) => {
 
@@ -27,6 +45,7 @@ const getDriversByIdHandler = async (req, res) => {
     const source = isNaN(id) ? "bdd" : "api";
 
     try {
+        console.log("!id-API"); // Corre!
         const response = await getDriverById(id, source);
         res.status(200).json(response);
     } catch (error) {
@@ -38,6 +57,7 @@ const getDriverByNombreHandler = async (req, res) => {
     const { nombre } = req.query;
 
     try{
+        console.log("!name-API"); // ...
         const driverByName = await getDriverByName(nombre);
         req.status(200).json(driverByName);
         //res.status(200).send(`Entramos detalle por ${nombre} de Drivers`);

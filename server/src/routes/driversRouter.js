@@ -1,9 +1,11 @@
 const { Router } = require("express");
 const { getDriversHandler, getDriverByNombreHandler, getDriversByIdHandler, postDriverHandler } = require('../handlers/driversHandler');
 
-const driversRouter = Router();
-const teamsRouter  = Router();
 
+//Al de'pe
+const { Driver } = ("../db.js");
+
+const driversRouter = Router();
 //Hasta acá corre bien
 
 // driversRouter.get("/drivers", (req, res) => {
@@ -12,6 +14,11 @@ const teamsRouter  = Router();
 
 
 driversRouter.get('/', getDriversHandler);
+
+// Add from codiumAI -???
+driversRouter.post('/', postDriverHandler);
+
+
 // driversRouter.get('/', (req, res) => {
 //     console.log(res);
 //     res.status(200).send("Entramos");
@@ -23,6 +30,5 @@ driversRouter.get('/:id', getDriversByIdHandler);
 driversRouter.get('/?nombre', getDriverByNombreHandler);
 //driversRouter.get('/drivers?name.forename', getDriversByNombreHandler);
 driversRouter.post('/', postDriverHandler);
-//teamsRouter.get('/teams', getTeamsHandler);
 
 module.exports = driversRouter;

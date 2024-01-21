@@ -2,40 +2,21 @@ const { response } = require("express");
 const { getAllDrivers, getDriverById, getDriverByName, createDriverDB } = require("../controllers/driversController.js");
 
 const getDriversHandler = async (req, res) => {
+
+    const { nombre } = req.query;
+
     try {
-       
-            console.log("!-All");
-            const response = await getAllDrivers();
-            console.log(response);
+        if(nombre){
+            const driverByName = await getDriverByName(nombre);
             res.status(200).json(response);
-        return response;
+        } else {
+            const allDrivers = await getAllDrivers();
+        }
     } catch (error) {
         res.status(400).json({error: error.msj});
+        res.status(200).json(response);
     }
 };
-
-// const getDriversHandler = async (req, res) => {
-
-//     const { nombre } = req.query;
-//     try {
-//         if(nombre){
-//             console.log("!");
-//             // consolelogea pero entra en loop
-//             const driverByName = await getDriverByName(nombre);
-//             return driverByName;
-//         } else {
-//             console.log("?");
-//             const response = await getAllDrivers();
-//             console.log(response);
-//             res.status(200).json(response);
-//         }
-//         return response;
-//         // console.log(res);
-//         // res.status(200).send("Entramos");
-//     } catch (error) {
-//         res.status(400).json({error: error.msj});
-//     }
-// };
     
 const getDriversByIdHandler = async (req, res) => {
 

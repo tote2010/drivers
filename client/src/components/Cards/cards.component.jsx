@@ -12,7 +12,8 @@ function Cards({ allDrivers }) {
                     name = { driver.name.forename }
                     lastName = { driver.name.surname }
                     img = { driver.image.url } 
-                    teams = { driver.teams } 
+                    teams = { driver.teams }
+                    id = { driver.id } 
                     key = { driver.id } 
                 />
                 ))

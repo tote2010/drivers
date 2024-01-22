@@ -22,12 +22,18 @@ function Detail({ name, lastName, img, teams, id }) {
         <div className="details">
             <CardDetails 
                 className="card"
-                name = { detaislDrivers.name.forename }
-                lastName = { detaislDrivers.name.surname }
-                img = { detaislDrivers.image.url } 
-                teams = { detaislDrivers.teams }
-                id = { detaislDrivers.id } 
-                key = { detaislDrivers.id } 
+                name = { name }
+                lastName = { lastName }
+                img = { img } 
+                teams = { teams }
+                id = { id } 
+                key = { id }
+                // name = { detaislDrivers.name.forename }
+                // lastName = { detaislDrivers.name.surname }
+                // img = { detaislDrivers.image.url } 
+                // teams = { detaislDrivers.teams }
+                // id = { detaislDrivers.id } 
+                // key = { detaislDrivers.id } 
             />
         </div>
     );

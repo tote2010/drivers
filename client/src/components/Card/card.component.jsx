@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import "./card.styles.css";
 
-function Card({ name, lastName, img, teams, id }) {
-console.log(id)
+function Card({ nombre, apellido, imagen, teams, id }) {
+
     return(
         <div className="card-container">
             <Link to={`/home/${id}`}>
-                <h2>{ name } { lastName }</h2>
-                <img src={ img }/>
+                <h2>{ nombre } { apellido }</h2>
+                <img src={ imagen } alt={ nombre } />
+                <p>{ imagen }</p>
                 <p>{ teams }</p>
             </Link>
         </div>

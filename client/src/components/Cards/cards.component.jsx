@@ -1,20 +1,19 @@
 import Card from "../Card/card.component";
 import "./cards.styles.css";
 
-function Cards({ allDrivers }) {
-
-    const driversList = allDrivers;
+function Cards({ nData }) {
+    console.log(nData[1])
 
     return(
         <div className="cards-list">
-            { driversList?.map((driver) => (
+            { nData?.map((driver) => (
                 <Card className="card"
-                    name = { driver.nombre }
-                    lastName = { driver.apellido }
-                    img = { driver.imagen } 
+                    nomre = { driver.nombre }
+                    apellido = { driver.apellido }
+                    imagen = { driver.imagen } 
                     teams = { driver.teams }
                     id = { driver.id } 
-                    key = { driver.id } 
+                    key = { driver.id }  
                 />
                 ))
             };            

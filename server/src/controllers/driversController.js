@@ -1,16 +1,6 @@
 const axios = require("axios");
 const { Driver } = require("../db.js");
 
-const getAllDrivers = async() => {
-    
-    const driversDB = await Driver.findAll();
-    const driversAPI = (await axios.get(`http://localhost:5000/drivers`)).data;
-    
-    const driversApiFiltered = cleanArray(driversAPI);
-    
-    return [...driversApiFiltered, ...driversDB];
-};
-
 const cleanArray = (array) =>
   array.map((elemento) => {
     return {
@@ -24,36 +14,27 @@ const cleanArray = (array) =>
       create: false,
     };
   });
+const getAllDrivers = async() => {
+    
+    const driversDB = await Driver.findAll();
+    const driversAPI = (await axios.get(`http://localhost:5000/drivers`)).data;
+    
+    const driversApiFiltered = cleanArray(driversAPI);
+    
+    return [...driversApiFiltered, ...driversDB];
+};
 
-// const driversApiFilter = (arr) => {
-//     arr.map((e) => {
-//         const el = {
-//             nombre: e.name.forename,
-//             apellido: e.name.surname,
-//             imagen: e.image.url,
-//             nacionalidad: e.nationality,
-//             created: false  //TAG: sirve para validar si la data recivida viene desde la db(true) o la api(false)
-//         };
-//         console.log(el);
-//         return el;
-//     });
-// };
 
 const getDriverById = async(id, source) => {
 
-    // const user = source === 'API' ?
-    //     (await axios.get(`http://localhost:5000/drivers/${id}`)).data :
-    //     await Driver.findByPk(id);
-    // return user;
-    
     if (source === "api"){
         console.log(id, source);
         const driversByIdAPI = (await axios.get(`http://localhost:5000/drivers/${id}`)).data;
         const driversApiFiltered = cleanArray(driversByIdAPI);
         if(driversByIdAPI) console.log("Existe")
         else console.log(vacio)
-        console.log(driversByIdAPI)
-        //return driversApiFiltered;
+        //console.log(driversByIdAPI)
+        return driversApiFiltered;
     } else if (source === "bdd") {
         console.log(id, source);
         const driversByIdDB = await Driver.findByPk(id);
@@ -61,7 +42,6 @@ const getDriverById = async(id, source) => {
     }
     //return await Driver.findOne({_id: id}).select('-__v');
 }
-
 
 const getDriverByName = async(nombre) => {
 

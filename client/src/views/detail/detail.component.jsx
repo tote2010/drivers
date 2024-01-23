@@ -1,22 +1,23 @@
 import { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { getDriverById } from "../../redux/actions/index.js";
 import "./detail.styles.css";
 import CardDetails from "../../components/CardDetails/cardDetails.component.jsx";
 
 
 function Detail({ name, lastName, img, teams, id }) {
-
+    
+    //const { id } = useParams();
     const dispatch = useDispatch();
     const detaislDrivers = useSelector((state) => state.detailsDrivers);
 
     useEffect(() => { 
-        dispatch(getDriverById());
+        dispatch(getDriverById(id));
     // return (() => {
     //     clearDetail();
     //     });
-    }, [dispatch]);
+    }, [dispatch, id]);
 
     return(
         <div className="details">

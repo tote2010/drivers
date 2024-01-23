@@ -9,9 +9,9 @@ import "./home.styles.css";
 
 function Home() {
 
-    const dispatch = useDispatch();
     const allDrivers = useSelector((state) => state.allDrivers);
     const [searchString, setSearchString] = useState("");
+    const dispatch = useDispatch();
 
     //const [searchTerm, setSearchTerm] = useState("");
     //const [filtered, setFiltered] = useState(allDrivers);
@@ -31,27 +31,23 @@ function Home() {
 
     useEffect(() => { 
         dispatch(getAllDrivers());
-    // return (() => {
-    //     clearDetail();
-    //     });
-    }, [dispatch]);
-
-    useEffect(() => { 
         dispatch(getDriverById());
-    // return (() => {
-    //     clearDetail();
-    //     });
-    }, [dispatch]);
-
-    useEffect(() => { 
         dispatch(getDriversByName());
     // return (() => {
     //     clearDetail();
     //     });
     }, [dispatch]);
 
+    // useEffect(() => { 
+    //     dispatch(getDriverById());
+    // }, [dispatch]);
+
+    // useEffect(() => { 
+    //     dispatch(getDriversByName());
+    // }, [dispatch]);
+
     return(
-        <div className="home">
+        <div className="home-container">
             <h2 className="home-title">Home Page</h2>
             <Navbar handleChange={ handleChange } handleSubmit={ handleSubmit }/>
             <Cards allDrivers = { allDrivers }/>

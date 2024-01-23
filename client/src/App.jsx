@@ -4,6 +4,7 @@
 
 import { Route, Routes } from "react-router-dom";
 
+import Landing from './views/landing/landing.component.jsx';
 import Home from './views/home/home.component.jsx';
 import Detail from './views/detail/detail.component.jsx';
 import Create from './views/create/create.component.jsx';
@@ -19,6 +20,7 @@ function App() {
             {/* <Route exact path="/home" component={ Home } />
             <Route path="/detail/:id" component={ Detail } />
             <Route path="/create" component={ Create } /> */}
+            <Route exact path="/" element={ <Landing />} />
             <Route exact path="/home" element={ <Home />} />
             <Route path="/home/:id" element={ <Detail />} />
             <Route path="/create" element={ <Create />} />

@@ -9,9 +9,9 @@ function Cards({ allDrivers }) {
         <div className="cards-list">
             { driversList?.map((driver) => (
                 <Card className="card"
-                    name = { driver.name.forename }
-                    lastName = { driver.name.surname }
-                    img = { driver.image.url } 
+                    name = { driver.nombre }
+                    lastName = { driver.apellido }
+                    img = { driver.imagen } 
                     teams = { driver.teams }
                     id = { driver.id } 
                     key = { driver.id } 

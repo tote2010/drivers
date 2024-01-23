@@ -1,8 +1,3 @@
-// const getTeamsHandler = (req, res) => {
-//     res.status(200).send('Entramos en Teams');
-// };
-
-
 const { getAllteams } = require("../controllers/teamsController.js");
 
 const getDriversHandler = (req, res) => {

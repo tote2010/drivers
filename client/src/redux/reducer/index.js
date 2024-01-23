@@ -1,6 +1,8 @@
-import { GET_ALL_DRIVERS, GET_DRIVER_BY_ID, GET_DRIVER_BY_NAME } from "../actions";
+import { GET_ALL_DRIVERS, GET_DRIVER_BY_ID, GET_DRIVER_BY_NAME, POST_DRIVER, GET_ALL_TEAMS } from "../actions";
 
-let initialState = { allDrivers:[], driversCopy:[], post:[] };
+
+//Or let ??
+const initialState = { allDrivers:[], driversCopy:[], allTeams:[], teamsCopy:[], post:[] };
 
 function rootReducer(state = initialState, action) {
     switch(action.type) {
@@ -10,6 +12,10 @@ function rootReducer(state = initialState, action) {
             return {...state, allDrivers: action.payload, driversCopy: action.payload};
         case GET_DRIVER_BY_NAME:
             return {...state, allDrivers: action.payload, driversCopy: action.payload};
+        case POST_DRIVER:
+            return {...state};
+        case GET_ALL_TEAMS:
+            return {...state, allTeams: action.payload, driversCopy: action.payload};
         default: 
             return state;
     }

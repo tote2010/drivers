@@ -6,12 +6,6 @@ const BodyParser = require( 'body-parser' );
 
 const server = express();
 
-
-
-
-
-
-
 // // Parse request of content-type - application/x-www-form-urlencoded
 server.use( BodyParser.urlencoded( { extended: false } ) );
 
@@ -39,11 +33,6 @@ server.use((req, res, next) => {
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
     next();
 });
-
-// server.use((req, res, next) =>{
-//     console.log("Acá estoy");
-//     next();
-// });
 
 server.use(morgan("dev"));
 server.use(express.json());

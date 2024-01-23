@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./card.styles.css";
 
 function Card({ name, lastName, img, teams, id }) {
-
+console.log(id)
     return(
         <div className="card-container">
             <Link to={`/home/${id}`}>
